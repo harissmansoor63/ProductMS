@@ -1,11 +1,9 @@
-
-
 <h2>Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :login, 'Username or Email' %><br />
+    <%= f.text_field :login, autofocus: true, autocomplete: "Login" %>
   </div>
 
   <div class="field">
@@ -27,12 +25,10 @@
 
 <%= render "devise/shared/links" %>
 
-
 <%= link_to 'New to ProductMS', '#', id: 'productscrolldown', remote: true %>
 
 
 <div class='d-none' id='scroller'>
-
 
 <h2>Sign up</h2>
 
@@ -48,6 +44,11 @@
    <div class="field">
     <%= f.label :last_name %><br />
     <%= f.text_field :last_name, autofocus: true, autocomplete: "Last Name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username, autofocus: true, autocomplete: "UserName" %>
   </div>
 
   <div class="field">
