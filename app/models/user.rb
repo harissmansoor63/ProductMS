@@ -1,13 +1,12 @@
 class User < ApplicationRecord
 	
-	val = /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}/
-	validates :first_name, :last_name, presence: true 
-	validates :password, format: { with: val }
+	Special = "?<>',?[]}{=-)(*&^%$#`~{}!"
+	Regex = /[#{Special.gsub(/./){|char| "\\#{char}"}}]/
 
-	validate :password_lower_case
-	validate :password_uppercase
-	validate :password_special_char
-	validate :password_contains_number
+	validates :first_name, :last_name, presence: true 
+	validates :password, format: { with: /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}/}
+
+	validate :password_lower_case, :password_uppercase, :password_special_char, :password_contains_number
 
 	attr_writer :login
 
@@ -29,24 +28,22 @@ class User < ApplicationRecord
 	end
 
 	def password_special_char
-		special = "?<>',?[]}{=-)(*&^%$#`~{}!"
-		regex = /[#{special.gsub(/./){|char| "\\#{char}"}}]/
-		return if password =~ regex
-		errors.add :password, ' must contain special character'
+		return if password =~ Regex
+		errors.add :password, ' must contain special character '
 	end
 
 	def password_contains_number
 		return if password.count("0-9") > 0
-		errors.add :password, ' must contain at least one number'
+		errors.add :password, ' must contain at least one number '
 	end
 
 	def self.find_for_database_authentication(warden_conditions)
-      conditions = warden_conditions.dup
-      if login = conditions.delete(:login)
-        where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
-      elsif conditions.has_key?(:username) || conditions.has_key?(:email)
-        where(conditions.to_h).first
-      end
-    end
+		conditions = warden_conditions.dup
+		if login = conditions.delete(:login)
+			where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+		elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+			where(conditions.to_h).first
+		end
+	end
 
 end
