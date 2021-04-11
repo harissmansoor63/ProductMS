@@ -1,11 +1,7 @@
+$(document).on('ready turbolinks:load', () => {scrollerSignUp();})
 
-$(document).on('ready turbolinks:load', () => {
-	scrollerSignUp();
-})
-function scrollerSignUp(){
-	$('#productscrolldown').on('click', function(){
-		// debugger
-		$('#scroller').removeClass('d-none');
-
-	})
+function scrollerSignUp()
+{
+    $('#productscrolldown').on('click', function()
+    { $('#scroller').removeClass('d-none'); })
 }
