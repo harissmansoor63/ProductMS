@@ -12,6 +12,9 @@ class ApplicationController < ActionController::Base
 		devise_parameter_sanitizer.permit :sign_in, keys: [:login, :password]
 		devise_parameter_sanitizer.permit(:sign_up) {|u| u.permit(:username, :first_name, :last_name, :email, :password, :password_confirmation)}
 		devise_parameter_sanitizer.permit(:account_update) {|u| u.permit(:username, :first_name, :last_name, :email, :password, :current_password)}
+		devise_parameter_sanitizer.permit :accept_invitation, keys: [:email]
 	end
+
+	
 
 end
