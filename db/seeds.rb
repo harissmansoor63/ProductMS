@@ -12,4 +12,5 @@ user.password = 'Password123!@#'
 user.first_name = 'hariss'
 user.last_name = 'mansoor'
 user.username= 'hariss123'
+user.role= 1
 user.save!
