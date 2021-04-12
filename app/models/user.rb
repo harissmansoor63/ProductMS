@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+
+	enum role: [:user, :admin]
 	
 	Special = "?<>',?[]}{=-)(*&^%$#`~{}!"
 	Regex = /[#{Special.gsub(/./){|char| "\\#{char}"}}]/
@@ -8,7 +10,7 @@ class User < ApplicationRecord
 
 	validate :password_lower_case, :password_uppercase, :password_special_char, :password_contains_number
 
-	enum role: [:user, :admin]
+	
 
 	attr_writer :login
 
