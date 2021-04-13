@@ -15,6 +15,4 @@ class ApplicationController < ActionController::Base
 		devise_parameter_sanitizer.permit :accept_invitation, keys: [:email]
 	end
 
-	
-
 end

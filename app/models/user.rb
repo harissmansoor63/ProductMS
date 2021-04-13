@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-
-	enum role: [:user, :admin]
 	
 	Special = "?<>',?[]}{=-)(*&^%$#`~{}!"
 	Regex = /[#{Special.gsub(/./){|char| "\\#{char}"}}]/
@@ -20,6 +18,8 @@ class User < ApplicationRecord
 
 	devise :invitable, :database_authenticatable, :registerable,
 	:recoverable, :rememberable, :validatable, :confirmable
+
+	enum role: { user: 0, admin: 1}
 
 	def password_uppercase
 		return if !!password.match(/\p{Upper}/)
