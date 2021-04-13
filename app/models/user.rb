@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
 	validate :password_lower_case, :password_uppercase, :password_special_char, :password_contains_number
 
+	before_create :set_password, :block_from_invitation?
+
 	
 
 	attr_writer :login
@@ -17,7 +19,7 @@ class User < ApplicationRecord
 	end
 
 	devise :invitable, :database_authenticatable, :registerable,
-	:recoverable, :rememberable, :validatable, :confirmable
+	:recoverable, :rememberable, :validatable
 
 	enum role: { user: 0, admin: 1}
 
@@ -52,6 +54,15 @@ class User < ApplicationRecord
 		elsif conditions.has_key?(:username) || conditions.has_key?(:email)
 			where(conditions.to_h).first
 		end
+	end
+
+	def set_password
+		chars = ((0..9).to_a + ('A'..'z').to_a + ('!'..'?').to_a)
+		self.password = (0...12).map { chars.sample }.join + '$0Ac9'
+	end
+
+	def block_from_invitation?
+		false
 	end
 
 end
