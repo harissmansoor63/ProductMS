@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   	resources :users
   end
 
+  resources :users
 
 	# get 'users/set_password'
 
