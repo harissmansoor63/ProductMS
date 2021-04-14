@@ -1,7 +1,7 @@
 class User < ApplicationRecord
 	
-	Special = "?<>',?[]}{=-)(*&^%$#`~{}!"
-	Regex = /[#{Special.gsub(/./){|char| "\\#{char}"}}]/
+	SPECIAL = "?<>',?[]}{=-)(*&^%$#`~{}!"
+	REGEX = /[#{SPECIAL.gsub(/./){|char| "\\#{char}"}}]/
 
 	validates :first_name, :last_name, presence: true 
 	validates :password, format: { with: /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}/}
@@ -9,8 +9,6 @@ class User < ApplicationRecord
 	validate :password_lower_case, :password_uppercase, :password_special_char, :password_contains_number
 
 	before_create :set_password, :block_from_invitation?
-
-	
 
 	attr_writer :login
 
@@ -36,7 +34,7 @@ class User < ApplicationRecord
 	end
 
 	def password_special_char
-		return if password =~ Regex
+		return if password =~ REGEX
 
 		errors.add :password, ' must contain special character '
 	end
