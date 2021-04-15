@@ -1,10 +1,7 @@
 class UsersController < ApplicationController
 
 	def set_password
-
 		@user = User.find(params[:id])
-
-		
 	end
 
 	def update_set_password

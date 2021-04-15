@@ -70,4 +70,3 @@ gem 'jquery-rails'
 gem "letter_opener", :group => :development
 
 gem 'devise_invitable', '~> 2.0.0'
-

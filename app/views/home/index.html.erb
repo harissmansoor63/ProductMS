@@ -5,7 +5,6 @@
 <% case current_user.role %>
 <% when 'user' %>
 <h3>Welcome</h3>
-<%#byebug%>
 <%= link_to 'Change Password',  set_password_path(current_user.id) %>    
 <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
 <% when 'admin' %>
