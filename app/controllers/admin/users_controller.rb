@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   before_action :get_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users= User.staff
+    @users = User.staff
   end
 
   def show; end
