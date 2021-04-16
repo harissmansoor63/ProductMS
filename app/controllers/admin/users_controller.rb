@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :get_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
     @users = User.staff
@@ -29,7 +29,7 @@ class Admin::UsersController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :password, :username, :email)
   end
 
-  def get_user
+  def set_user
     @user = User.find(params[:id])
   end
 end

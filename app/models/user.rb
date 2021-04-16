@@ -11,10 +11,8 @@ class User < ApplicationRecord
 
   before_create :set_password, :block_from_invitation?
 
-  attr_writer :login
-
   def login
-    @login || self.username || self.email
+    self.username || self.email
   end
 
   devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
@@ -49,7 +47,7 @@ class User < ApplicationRecord
     conditions = warden_conditions.dup
     login = conditions.delete(:login)
     clause = where(conditions.to_h)
-    return clause.where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first if login
+    return clause.where(["lower(username) = :value OR lower(email) = :value", { value: login.downcase }]).first if login
 
     clause.first if conditions.has_key?(:username) || conditions.has_key?(:email)
   end
