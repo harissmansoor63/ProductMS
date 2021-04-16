@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :getting_user
+	before_action :get_user
 
 	def set_password; end
 
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 		params.require(:user).permit(:password, :password_confirmation)
 	end
 
-	def getting_user
+	def get_user
 		@user = User.find(params[:id])
 	end
 end
