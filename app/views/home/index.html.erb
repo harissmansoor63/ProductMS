@@ -2,18 +2,18 @@
 <p>Find me in app/views/home/index.html.erb</p>
 
 <% if user_signed_in? %>
-<% case current_user.role %>
-<% when 'user' %>
-<h3>Welcome</h3>
-<%= link_to 'Change Password',  set_password_path(current_user.id) %>    
-<%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-<% when 'admin' %>
-<h3>Welcome, Administrator</h3>
-<%= link_to 'Invite', new_user_invitation_path %>
-<%= link_to 'Show Users', admin_users_path %>
-<%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-<% end %>
+  <% case current_user.role %>
+    <% when 'user' %>
+      <h3>Welcome</h3>
+      <%= link_to 'Change Password',  set_password_path(current_user.id) %>    
+      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+    <% when 'admin' %>
+      <h3>Welcome, Administrator</h3>
+      <%= link_to 'Invite', new_user_invitation_path %>
+      <%= link_to 'Show Users', admin_users_path %>
+      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+  <% end %>
 <% else %>
-<h3>Welcome</h3>
-<%= link_to 'Sign In', new_user_session_path %>
+  <h3>Welcome</h3>
+  <%= link_to 'Sign In', new_user_session_path %>
 <% end %>

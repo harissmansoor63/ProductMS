@@ -63,10 +63,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 
-gem 'bootstrap'
+gem 'bootstrap', '~> 4.5.2' 
 
 gem 'jquery-rails'
 
-gem "letter_opener", :group => :development
+gem "letter_opener", group: :development
 
 gem 'devise_invitable', '~> 2.0.0'
