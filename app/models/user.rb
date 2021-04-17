@@ -15,7 +15,7 @@ class User < ApplicationRecord
     self.username || self.email
   end
 
-  devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
+  devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable
 
   enum role: ROLLER
 
@@ -53,9 +53,12 @@ class User < ApplicationRecord
   end
 
   def set_password
-    if self.user?
+    if self.user? && username.nil?
       chars = ((0..9).to_a + ('A'..'z').to_a + ('!'..'?').to_a)
       self.password = (0...12).map { chars.sample }.join + '$0Ac9'
+      skip_confirmation!
+    elsif self.admin?
+      skip_confirmation!
     end
   end
 
