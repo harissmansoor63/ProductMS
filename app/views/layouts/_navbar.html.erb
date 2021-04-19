@@ -1,0 +1,7 @@
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="/">ProductMS</a>
+  <form class="form-inline">
+    <%= link_to 'Change Password',  set_password_path(current_user.id) %>    
+    <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+  </form>
+</nav>

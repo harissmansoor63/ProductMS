@@ -11,8 +11,10 @@ class User < ApplicationRecord
 
   before_create :set_password, :block_from_invitation?
 
+  attr_writer :login
+
   def login
-    self.username || self.email
+   self.username || self.email
   end
 
   devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable

@@ -1,5 +1,9 @@
 <head>
-	<title>ProductMS</title>
+  <% if current_user && current_user.admin? %>
+    <%= render partial: 'admin/navbar' %>
+  <% elsif current_user %>
+    <%= render partial: 'layouts/navbar' %>
+  <% end %>
 	<%= csrf_meta_tags %>
 	<%= csp_meta_tag %>
 	<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
