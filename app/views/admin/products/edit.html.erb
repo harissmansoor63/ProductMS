@@ -1,0 +1,29 @@
+<%= form_with(model: @product, url: admin_product_path(@product), method: 'patch' , local: true) do |f| %>
+  <%= render "shared/error_messages", resource: @product %>
+
+  <div class="field">
+    <div class= "clearfix"> <%= f.label :title %> </div>
+    <%= f.text_field :title, autofocus: true, autocomplete: "Title" %>
+  </div>
+
+  <div class="field">
+    <div class= "clearfix"> <%= f.label :price %> </div>
+    <%= f.text_field :price, autofocus: true, autocomplete: "Price" %>
+  </div>
+
+  <div class="field">
+    <div class= "clearfix"> <%= f.label :status %> </div>
+    <%= f.select :status, ['Publish', 'Draft', 'Pending'] %>
+  </div>
+
+  <div class="field">
+    <div class= "clearfix"> <%= f.label :description %> </div>
+    <%= f.text_area :description, rows: "5", cols: "50", autofocus: true, autocomplete: "Description" %>
+  </div>
+
+  <div class="actions">
+      <%= f.submit "Update" %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', admin_products_path %>

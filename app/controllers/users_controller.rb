@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def update_set_password
     if @user.update(user_password_params)
-      redirect_to root_path
+      redirect_to home_index_path
     else
       render :set_password
     end

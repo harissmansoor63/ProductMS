@@ -1,0 +1,9 @@
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="/">ProductMS</a>
+  <form class="form-inline">
+    <%= link_to 'Invite', new_user_invitation_path, class: "btn btn-default" %>
+    <%= link_to 'Show Users', admin_users_path, class: "btn btn-default" %>
+    <%= link_to 'All Products', admin_products_path, class: "btn btn-default" %>
+    <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "btn btn-default" %>
+  </form>
+</nav>
