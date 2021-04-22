@@ -2,8 +2,16 @@ class Admin::ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
+  helper_method :sort_column, :sort_direction
   def index
-    @products = Product.all
+    @products = Product.page(params[:page]).per(10).order(sort_column + " " + sort_direction)
+    respond_to do |format|
+      format.html
+      format.csv do
+        headers['Content-Disposition'] = "attachment; filename=\"product-list\""
+        headers['Content-Type'] ||= 'text/csv'
+      end
+    end
   end
 
   def new
@@ -44,6 +52,14 @@ class Admin::ProductsController < ApplicationController
 
   def set_product
     @product = Product.find(params[:id])
+  end
+
+  def sort_column
+    params[:sort] || "id"
+  end
+
+  def sort_direction
+    params[:direction] || "asc"
   end
 
 end
