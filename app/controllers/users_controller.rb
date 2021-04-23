@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def update_set_password
     if @user.update(user_password_params)
+      @user.update_column(:role, 2)
       redirect_to home_index_path
     else
       render :set_password
@@ -20,4 +21,5 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
+
 end

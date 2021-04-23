@@ -1,4 +1,4 @@
 <%= CSV.generate_line Product::HEADERS %>
-<%- @products.each do |product| -%>
+<%- @products_download.each do |product| -%>
 <%= CSV.generate_line([product.title, product.price, product.status, product.description]) -%>
 <%- end -%>

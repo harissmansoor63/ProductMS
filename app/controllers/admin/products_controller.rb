@@ -4,7 +4,8 @@ class Admin::ProductsController < ApplicationController
 
   helper_method :sort_column, :sort_direction
   def index
-    @products = Product.page(params[:page]).per(10).order(sort_column + " " + sort_direction)
+    @products = Product.page(params[:page]).per(10).order(sort_column + " " + sort_direction).search(params[:search])
+    @products_download = Product.all
     respond_to do |format|
       format.html
       format.csv do
@@ -60,6 +61,12 @@ class Admin::ProductsController < ApplicationController
 
   def sort_direction
     params[:direction] || "asc"
+  end
+
+  def search_products
+    if @product = Product.all.find{|product| product.title.include?(params[:search])}
+      redirect_to admin_product_path(@product)
+    end
   end
 
 end

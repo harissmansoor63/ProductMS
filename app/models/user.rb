@@ -1,17 +1,18 @@
 class User < ApplicationRecord
   SPECIAL = "?<>',?[]}{=-)(*&^%$#`~{}!"
   REGEX = /[#{SPECIAL.gsub(/./){|char| "\\#{char}"}}]/
-  ROLLER = { user: 0, admin: 1 }
+  ROLLER = { user: 0, admin: 1, invited_user: 2 }
 
   scope :staff, -> {where(role: User.roles[:user])} 
 
+  attr_accessor :skip_validations
+  attr_writer :login
+
   validates :first_name, :last_name, presence: true 
-  validates :password, format: { with: /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}/ }
-  validate :password_lower_case, :password_uppercase, :password_special_char, :password_contains_number
+  validates :password, format: { with: /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}/ }, unless: :skip_validations
+  validate :password_lower_case, :password_uppercase, :password_special_char, :password_contains_number, unless: :skip_validations
 
   before_create :set_password, :block_from_invitation?
-
-  attr_writer :login
 
   def login
    self.username || self.email
@@ -20,6 +21,10 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable
 
   enum role: ROLLER
+
+  def skip_validations
+    @skip_validations ||= false
+  end
 
   def password_uppercase
     return if password.match(/\p{Upper}/)
