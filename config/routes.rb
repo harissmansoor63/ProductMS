@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :users
+  resources :products, only: [:index, :show]
 
   get 'users/:id/set_password', to: 'users#set_password', as: :set_password
 

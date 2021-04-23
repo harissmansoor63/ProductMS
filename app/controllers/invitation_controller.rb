@@ -15,8 +15,9 @@ class Users::InvitationsController < Devise::InvitationsController
   end
 
  def create
+  super
     byebug
-    super
+    
     # self.resource = invite_resource
     # resource_invited = resource.errors.empty?
     # byebug
