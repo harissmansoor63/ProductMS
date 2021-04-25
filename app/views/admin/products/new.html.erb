@@ -16,6 +16,12 @@
     <%= f.select :status, ['Publish', 'Draft', 'Pending'] %>
   </div>
 
+   <div class="field">
+    <div class= "clearfix"> <%= f.label :image %> </div>
+    <%= f.file_field :image, autofocus: true, autocomplete: "Image" %>
+  </div>
+
+
   <div class="field">
     <div class= "clearfix"> <%= f.label :description %> </div>
     <%= f.text_area :description, rows: "5", cols: "50", autofocus: true, autocomplete: "Description" %>

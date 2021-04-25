@@ -7,9 +7,9 @@
 <table class="table table-light">
   <thead class="thead-dark ">
     <tr>
-      <th><%= sortable "id" %></th>
       <th><%= sortable "title" %></th>
       <th><%= sortable "price" %></th>
+      <th>Image</th>
       <th>Actions</th>
       <th colspan="3"></th>   
     </tr>
@@ -17,9 +17,9 @@
 
   <% @products.each do |product| %>
     <tr>
-      <td><%= product.id %></td>
       <td><%= product.title %></td>
       <td><%= product.price %></td>
+      <td style="width:200px; height:auto"> <%= image_tag(product.image, style:'width:100%') %></td>
       <td>
         <%= link_to 'Show', product_path(product) %>
       </td>

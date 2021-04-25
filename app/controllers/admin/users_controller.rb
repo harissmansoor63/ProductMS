@@ -44,8 +44,4 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def role_setter
-    @user.role = 2
-  end
-
 end
