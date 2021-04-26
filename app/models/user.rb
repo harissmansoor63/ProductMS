@@ -60,7 +60,7 @@ class User < ApplicationRecord
   end
 
   def set_password
-    if self.user? && username.nil?
+    if self.invited_user?
       chars = ((0..9).to_a + ('A'..'z').to_a + ('!'..'?').to_a)
       self.password = (0...12).map { chars.sample }.join + '$0Ac9'
       skip_confirmation!

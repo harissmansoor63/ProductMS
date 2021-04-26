@@ -5,7 +5,9 @@ class InvitationsController < Devise::InvitationsController
   
   def create
     super
-    @user = User.find_by(email: params[:user][:email])
-    @user.update_column(:role, 2)
+  end
+
+  def invite_params
+    devise_parameter_sanitizer.sanitize(:invite).with_defaults(role: 2)
   end
 end
