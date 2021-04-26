@@ -1,0 +1,20 @@
+<h1>SHOW</h1>
+
+<%= link_to 'Edit Profile', edit_user_path(current_user.id), class: "btn btn-default" %>
+
+<p>
+  <strong>First Name</strong>
+  <%= @user.first_name %>
+</p>
+
+<p>
+  <strong>Last Name</strong>
+  <%= @user.last_name %>
+</p>
+
+<p>
+  <strong>Email</strong>
+  <%= @user.email %>
+</p>
+
+<%= link_to 'Back', root_path %>
