@@ -1,19 +1,19 @@
 <h2>Product</h2>
 
-
 <div class="d-flex justify-content-center container mt-3">
   <div class="card p-3 bg-white">
-      <div class="text-center mt-2">
-        <div style="width:400px; height:auto">
-          <%= image_tag(@product.image, style:'width:100%') %>
-        </div>
-        <div>
-          <h4><%= @product.title %></h4>
-          <h6 class="mt-0 text-black-50">ID: <%= @product.id %></h6>
-          <h6><span>Status</span><span><h6><%=@product.status %></h6></span></h6>
-          <h6><span>Description</span><span><h6><%=@product.description %></h6></span></h6>
-        </div>  
+    <div class="text-center mt-2">
+      <div style="width:400px; height:auto">
+        <%= image_tag(@product.image, style:'width:100%') %>
       </div>
+      <div>
+        <h4><%= @product.title %></h4>
+        <h6 class="mt-0 text-black-50">ID: <%= @product.id %></h6>
+        <h6><span>Status</span><span><h6><%=@product.status %></h6></span></h6>
+        <h6><span>Description</span><span><h6><%=@product.description %></h6></span></h6>
+      </div>  
+    </div>
+    
     <div class="d-flex justify-content-between total font-weight-bold mt-4"><span>Total</span><span><h6>$<%=@product.price %></h6></span></div>
   </div>
 </div>

@@ -9,5 +9,4 @@ class Product < ApplicationRecord
     return all if search.blank?
     where('title LIKE :value OR price LIKE :value OR id LIKE :value', {value: search})
   end
-
 end

@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     if params[:user][:password].blank? && params[:user][:password_confirmation].blank? # if password fields blanks
       @user.skip_validations = true #used to overide my vals
       if @user.update_without_password(user_params.except("current_password")) #used to overide devise vals
-        redirect_to admin_users_path
+        redirect_to user_path
       else
         render 'edit'
       end
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       @user.skip_validations = false
       @user.skip_confirmation!
       if @user.update(user_params)
-        redirect_to admin_users_path
+        redirect_to user_path
       else
         render 'edit'
       end
@@ -49,5 +49,4 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
-
 end

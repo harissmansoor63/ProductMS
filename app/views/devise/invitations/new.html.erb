@@ -5,24 +5,19 @@
 
   <% resource.class.invite_key_fields.each do |field| -%>
     <div class="field">
-      <div class= "clearfix"> <%= f.label field %> </div>
+      <div class="clearfix"> <%= f.label field %> </div>
       <%= f.text_field field %>
     </div>
   <% end -%>
 
   <div class="field">
-    <div class= "clearfix"> <%= f.label :first_name %> </div>
+    <div class="clearfix"> <%= f.label :first_name %> </div>
     <%= f.text_field :first_name, autofocus: true, autocomplete: "First Name" %>
   </div>
 
   <div class="field">
-    <div class= "clearfix"> <%= f.label :last_name %> </div>
+    <div class="clearfix"> <%= f.label :last_name %> </div>
     <%= f.text_field :last_name, autofocus: true, autocomplete: "Last Name" %>
-  </div>
-
-  <div class="field">
-    <div class= "clearfix"> <%= f.label :username %> </div>
-    <%= f.text_field :username, autofocus: true, autocomplete: "Username" %>
   </div>
 
   <div class="actions">

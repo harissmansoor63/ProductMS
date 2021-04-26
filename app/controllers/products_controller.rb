@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: :show
 
   helper_method :sort_column, :sort_direction
+  
   def index
     @products = Product.page(params[:page]).per(10).order(sort_column + " " + sort_direction).search(params[:search])
   end
@@ -21,11 +22,5 @@ class ProductsController < ApplicationController
 
   def sort_direction
     params[:direction] || "asc"
-  end
-
-  def search_products
-    if @product = Product.all.find{|product| product.title.include?(params[:search])}
-      redirect_to product_path(@product)
-    end
   end
 end

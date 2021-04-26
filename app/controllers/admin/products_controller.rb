@@ -62,11 +62,4 @@ class Admin::ProductsController < ApplicationController
   def sort_direction
     params[:direction] || "asc"
   end
-
-  def search_products
-    if @product = Product.all.find{|product| product.title.include?(params[:search])}
-      redirect_to admin_product_path(@product)
-    end
-  end
-
 end
