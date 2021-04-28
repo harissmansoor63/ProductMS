@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'home/index'
+
   devise_for :users, controllers: { invitations: 'invitations' }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
@@ -7,6 +8,9 @@ Rails.application.routes.draw do
     resources :users 
     resources :products 
   end
+
+  resources :order_items
+  get 'cart', to: 'cart#show'
 
   resources :users
   resources :products, only: [:index, :show]

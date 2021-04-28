@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
   before_action :update_allowed_parameters, if: :devise_controller?
 
+  include ApplicationHelper
+
   protected
 
   def update_allowed_parameters

@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
   has_one_attached :image
+  has_many :order_items
 
   validates :title, :price, :description, :status, presence: true
 
