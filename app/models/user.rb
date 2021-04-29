@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :orders
+  
   SPECIAL = "?<>',?[]}{=-)(*&^%$#`~{}!"
   REGEX = /[#{SPECIAL.gsub(/./){|char| "\\#{char}"}}]/
   ROLLER = { user: 0, admin: 1, invited_user: 2 }

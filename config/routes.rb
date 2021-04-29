@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   resources :order_items
   get 'cart', to: 'cart#show'
+  get 'checkout', to: 'orders#show'
+  get 'confirm', to: 'orders#confirm'
 
   resources :users
   resources :products, only: [:index, :show]

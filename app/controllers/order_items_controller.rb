@@ -3,7 +3,8 @@ class OrderItemsController < ApplicationController
 
   def create
     @order_item = @order.order_items.new(order_params)
-    @order.save
+    @order.user_id = current_user.id
+    @order_item.save
     session[:order_id] = @order.id
   end
 
