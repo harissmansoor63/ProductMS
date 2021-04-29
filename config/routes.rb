@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :order_items
-  get 'cart', to: 'cart#show'
+  get 'cart', to: 'carts#show'
   get 'checkout', to: 'orders#show'
   get 'confirm', to: 'orders#confirm'
 
