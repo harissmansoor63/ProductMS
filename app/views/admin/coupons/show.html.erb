@@ -1,0 +1,16 @@
+<h2>Coupon</h2>
+
+<div class="d-flex justify-content-center container mt-3">
+  <div class="card p-3 bg-white">
+    <div class="text-center mt-2">
+      <div>
+        <h4><%= @coupon.title %></h4>
+        <h6 class="mt-0 text-black-50">ID: <%= @coupon.id %></h6>
+      </div>  
+    </div>
+    
+    <div class="d-flex justify-content-between total font-weight-bold mt-4"><span>Discount Value</span><span><h6>$<%=@coupon.discount %></h6></span></div>
+  </div>
+</div>
+
+<%= link_to 'Back', admin_coupons_path %>

@@ -1,0 +1,11 @@
+<%= render "shared/error_messages", resource: @coupon %>
+
+<div class="field">
+  <div class="clearfix"> <%= f.label :title %> </div>
+  <%= f.text_field :title, autofocus: true, autocomplete: "Title" %>
+</div>
+
+<div class="field">
+  <div class="clearfix"> <%= f.label :discount %> </div>
+  <%= f.text_field :discount, autofocus: true, autocomplete: "Discount" %>
+</div>
