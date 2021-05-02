@@ -1,6 +1,8 @@
 <%= form_with(model: @coupon, url: admin_coupons_path, method: 'post', local: true) do |f| %>
   <%=render 'form', f: f%>
 
+  <%= f.collection_select(:product_ids, Product.all, :id, :title, {:include_hidden => false}, {multiple: true})%>
+
   <div class="actions">
     <%= f.submit "Create" %>
   </div>

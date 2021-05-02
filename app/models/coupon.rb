@@ -1,5 +1,6 @@
 class Coupon < ApplicationRecord
-  belongs_to :product
+  has_many :coupon_products, dependent: :destroy
+  has_many :products, through: :coupon_products
   validates :title, :discount, presence: true
 
   HEADERS = ['Title', 'Discount']

@@ -1,19 +1,25 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'orders/index'
+    get 'orders/show'
+  end
   get 'home/index'
 
-  devise_for :users, controllers: { invitations: 'invitations' }
+  devise_for :users, controllers: { invitations: 'invitations', sessions: "sessions" }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   namespace :admin do
     resources :users 
     resources :products 
-    resources :coupons 
+    resources :coupons
+    resources :orders, only: [:index, :show]
   end
 
   resources :order_items
   get 'cart', to: 'carts#show'
-  get 'checkout', to: 'orders#show'
-  get 'confirm', to: 'orders#confirm'
+  get 'checkout', to: 'orders#new'
+  get 'show_confirmation', to: 'orders#show_confirmation'
+  put 'confirmation', to: 'orders#confirmation'
 
   resources :users
   resources :products, only: [:index, :show]

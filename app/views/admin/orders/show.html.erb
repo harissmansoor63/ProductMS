@@ -1,0 +1,12 @@
+<div class="d-flex justify-content-center container mt-3">
+  <div class="card p-3 bg-white">
+    <div class="text-center mt-2">
+      <div>
+        <h4>Total<%= @order.subtotal %></h4>
+        <h6 class="mt-0 text-black-50">ID: <%= @order.id %></h6>
+      </div>  
+    </div>
+  </div>
+</div>
+
+<%= link_to 'Back', admin_orders_path %>

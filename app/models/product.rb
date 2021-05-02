@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
-  has_many :coupons
+  has_many :coupon_products, dependent: :destroy
+  has_many :coupons, through: :coupon_products
   has_one_attached :image
   has_many :order_items, dependent: :destroy
 

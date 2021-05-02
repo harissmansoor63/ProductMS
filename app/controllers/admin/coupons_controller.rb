@@ -5,7 +5,7 @@ class Admin::CouponsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @coupons = Coupon.page(params[:page]).per(5).order(sort_column + " " + sort_direction).search(params[:search])
+    @coupons = Coupon.page(params[:page]).per(10).order(sort_column + " " + sort_direction).search(params[:search])
     @coupons_download = Coupon.all
     respond_to do |format|
       format.html
@@ -17,7 +17,8 @@ class Admin::CouponsController < ApplicationController
   end
 
   def new
-     @coupon = Coupon.new
+   @coupon = Coupon.new
+   @products = Product.all
   end
 
   def show; end
@@ -34,7 +35,6 @@ class Admin::CouponsController < ApplicationController
   end
 
   def update
-    byebug
     if @coupon.update(coupon_params)
       redirect_to admin_coupons_path
     else
@@ -50,7 +50,7 @@ class Admin::CouponsController < ApplicationController
   private
 
   def coupon_params
-    params.require(:coupon).permit(:title, :discount)
+    params.require(:coupon).permit(:title, :discount, product_ids:[])
   end
 
   def set_coupon
