@@ -1,3 +1,10 @@
-// Place all the styles related to the products controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.product_image {
+  width:400px;
+  height:auto;
+}
+
+.products_container {
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+}

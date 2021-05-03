@@ -1,4 +1,4 @@
 <%= CSV.generate_line Coupon::HEADERS %>
-<%- @coupons_download.each do |coupon| -%>
-<%= CSV.generate_line([coupon.title, coupon.discount]) -%>
+<%- @coupons_export.each do |coupon| -%>
+  <%= CSV.generate_line([coupon.title, coupon.discount]) -%>
 <%- end -%>

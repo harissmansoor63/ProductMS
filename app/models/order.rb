@@ -7,7 +7,7 @@ class Order < ApplicationRecord
   end
 
   def sub_total(coupon)
-    order_items.collect {|order_item|
+    order_items.collect { |order_item|
       if order_item.valid?
         if (order_item.product.coupons.ids).include? coupon.id
           price_with_coupon = order_item.unit_price

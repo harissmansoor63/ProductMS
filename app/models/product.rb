@@ -12,8 +12,11 @@ class Product < ApplicationRecord
 
   HEADERS = ['Title', 'Price', 'Status', 'Description']
 
+  ADMIN_PRODUCT_PERPAGE = 5
+  USER_PRODUCT_PERPAGE = 10
+
   def self.search(search)
     return all if search.blank?
-    where('title LIKE :value OR price LIKE :value OR id LIKE :value', {value: search})
+    where('title LIKE :value OR price LIKE :value OR id LIKE :value', { value: search })
   end
 end

@@ -5,8 +5,8 @@ class Admin::CouponsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @coupons = Coupon.page(params[:page]).per(10).order(sort_column + " " + sort_direction).search(params[:search])
-    @coupons_download = Coupon.all
+    @coupons = Coupon.search(params[:search]).page(params[:page]).per(Coupon::ADMIN_COUPON_PERPAGE).order(sort_column + " " + sort_direction)
+    @coupons_export = Coupon.all
     respond_to do |format|
       format.html
       format.csv do

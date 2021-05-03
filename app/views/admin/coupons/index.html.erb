@@ -1,11 +1,10 @@
 <%= link_to 'New Coupon', new_admin_coupon_path, class: "btn btn-default" %>
-
 <%= link_to 'Download CSV list', admin_coupons_path(format: :csv), class: "btn btn-default" %>
 
 <%= form_tag(admin_coupons_path, method: :get) do %>
-  <p> Search for a coupon </p>
+  <p>Search for a coupon</p>
   <%= text_field_tag(:search, params[:search]) %>
-  <%= submit_tag ("Search") %>
+  <%= submit_tag("Search") %>
 <% end %>
 
 <table class="table table-light">

@@ -5,6 +5,8 @@ class Coupon < ApplicationRecord
 
   HEADERS = ['Title', 'Discount']
 
+  ADMIN_COUPON_PERPAGE = 5
+
   def self.search(search)
     return all if search.blank?
     where('title LIKE :value OR discount LIKE :value OR id LIKE :value', {value: search})

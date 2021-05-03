@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @products = Product.page(params[:page]).per(10).order(sort_column + " " + sort_direction).search(params[:search])
+    @products = Product.search(params[:search]).page(params[:page]).per(Product::USER_PRODUCT_PERPAGE).order(sort_column + " " + sort_direction)
     @order_item = current_order.order_items.new
   end
 

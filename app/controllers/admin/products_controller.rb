@@ -3,9 +3,10 @@ class Admin::ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   helper_method :sort_column, :sort_direction
+
   def index
-    @products = Product.page(params[:page]).per(10).order(sort_column + " " + sort_direction).search(params[:search])
-    @products_download = Product.all
+    @products = Product.search(params[:search]).page(params[:page]).per(Product::ADMIN_PRODUCT_PERPAGE).order(sort_column + " " + sort_direction)
+    @products_export = Product.all
     respond_to do |format|
       format.html
       format.csv do

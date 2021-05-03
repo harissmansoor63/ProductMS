@@ -3,9 +3,10 @@ Rails.application.routes.draw do
     get 'orders/index'
     get 'orders/show'
   end
+
   get 'home/index'
 
-  devise_for :users, controllers: { invitations: 'invitations', sessions: "sessions" }
+  devise_for :users, controllers: {invitations: 'invitations', sessions: "sessions"}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   namespace :admin do
@@ -25,7 +26,6 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show]
 
   get 'users/:id/set_password', to: 'users#set_password', as: :set_password
-
   put 'users/:id/update_set_password', to: 'users#update_set_password', as: :update_set_password 
 
   root to: "home#index"

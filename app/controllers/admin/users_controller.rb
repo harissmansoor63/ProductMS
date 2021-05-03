@@ -11,21 +11,10 @@ class Admin::UsersController < ApplicationController
   def edit; end
 
   def update 
-    if params[:user][:password].blank? && params[:user][:password_confirmation].blank? # if password fields blanks
-      @user.skip_validations = true #used to overide my vals
-      if @user.update_without_password(user_params.except("current_password")) #used to overide devise vals
-        redirect_to admin_users_path
-      else
-        render 'edit'
-      end
+    if user_params[:password].blank? && user_params[:password_confirmation].blank? # if password fields blanks
+      update_skip_validations
     else
-      @user.skip_validations = false
-      @user.skip_confirmation!
-      if @user.update(user_params)
-        redirect_to admin_users_path
-      else
-        render 'edit'
-      end
+      update_allow_validations
     end
   end
 
@@ -35,6 +24,26 @@ class Admin::UsersController < ApplicationController
   end
 
   private
+
+  def update_skip_validations
+    @user.skip_validations = true #used to overide my vals
+    if @user.update_without_password(user_params.except(:current_password)) #used to overide devise vals
+      redirect_to admin_users_path
+    else
+      render 'edit'
+    end
+  end
+
+  def update_allow_validations
+    @user.skip_validations = false
+    @user.skip_confirmation!
+    if @user.update(user_params)
+      redirect_to admin_users_path
+    else
+      render 'edit'
+    end
+  end
+
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :password, :email, :password_confirmation)
