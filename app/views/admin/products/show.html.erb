@@ -1,28 +1,22 @@
-<h1>SHOW</h1>
+<h2>Product</h2>
 
-<p>
-  <strong>ID</strong>
-  <%= @product.id %>
-</p>
-
-<p>
-  <strong>Title</strong>
-  <%= @product.title %>
-</p>
-
-<p>
-  <strong>Price</strong>
-  <%= @product.price %>
-</p>
-
-<p>
-  <strong>Status</strong>
-  <%= @product.status %>
-</p>
-
-<p>
-  <strong>Description</strong>
-  <%= @product.description %>
-</p>
+<div class="d-flex justify-content-center container mt-3">
+  <div class="card p-3 bg-white">
+    <div class="text-center mt-2">
+      <div class="product_image">
+        <%= image_tag(@product.image, style:'width:100%') %>
+      </div>
+      <div>
+        <h4><%= @product.title %></h4>
+        <h6 class="mt-0 text-black-50">ID: <%= @product.id %></h6>
+        <h6>Status: <%= @product.status %></h6>
+        <h6>Description: <%= @product.description %></h6>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between total font-weight-bold mt-4">
+      Total<h6>$<%= @product.price %></h6>
+    </div>
+  </div>
+</div>
 
 <%= link_to 'Back', admin_products_path %>

@@ -1,0 +1,26 @@
+<%= form_with(model: @order, url: confirmation_path, method: 'put', local: true) do |form| %>
+  <h1>CHECKOUT</h1>
+
+  <% @order_items.each do |item| %>
+    <h3><%= item.product.title %></h3>
+    <h3><%= item.product.price %></h3>
+    <%= form.fields_for :item do |f|%>
+      <%= f.hidden_field :product_id, value: item.product.id %>
+    <%end%>
+    <h2>Item Subtotal: <%=item.total%></h2>
+  <%end%>
+
+  <%= collection_select(:id, :coupon_id, Coupon.all, :id, :title)%>
+  
+  <div class="field">
+    <div class="clearfix"><%= form.label :address %></div>
+    <%= form.text_field :address, autofocus: true, autocomplete: "Address" %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+
+  <h2>USER ID <%= @order.user_id %></h2>
+  <h2>ORDER TOTAL <%= @order.set_subtotal%></h2>
+<% end %>

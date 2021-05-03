@@ -1,0 +1,35 @@
+<%= form_tag(products_path, method: :get) do %>
+  <p>Search for a product</p>
+  <%= text_field_tag(:search, params[:search]) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<div class="row m-3">
+  <% @products.each do |product| %>
+    <div class="col-md-4">
+      <div class="d-flex justify-content-center container mt-3">
+        <div class="card p-3 bg-white">
+          <div class="text-center mt-2">
+            <div class="products_container">
+              <%=image_tag(product.image, style:'width:100%')%>
+            </div>
+            <div>
+              <h4><%= product.title %></h4>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between total font-weight-bold mt-4">
+            Total<h6>$<%=product.price%></h6>
+          </div>
+          <%= link_to 'Show', product_path(product), class:"btn btn-default" %>
+          <%= form_with model: @order_item do |f|%>
+              <%= f.number_field :quantity, value: 1, min: 1 %>
+              <%= f.hidden_field :product_id, value: product.id %>
+              <%= f.submit "Add to Cart" %>
+          <%end%>
+        </div>
+      </div>
+    </div>
+  <%end%>
+</div>
+
+<%= paginate @products, theme: 'twitter-bootstrap-4', pagination_class: "pagination-sm justify-content-center", nav_class: "d-inline-b" %>

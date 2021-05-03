@@ -1,7 +1,7 @@
 <head>
-  <% if current_user && current_user.admin? %>
+  <% if user_signed_in? && current_user.admin? %>
     <%= render partial: 'admin/navbar' %>
-  <% elsif current_user %>
+  <% elsif user_signed_in? %>
     <%= render partial: 'layouts/navbar' %>
   <% end %>
 	<%= csrf_meta_tags %>

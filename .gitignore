@@ -25,6 +25,7 @@
 
 .DS_Store
 app/views/.DS_Store
+app/views/admin/.DS_Store
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
